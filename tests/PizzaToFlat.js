@@ -15,7 +15,6 @@ describe('Pizza to Flat', function () {
       assert.ok(chameleon['score-partwise'], 'Missing score-partwise');
       assert.equal(chameleon['score-partwise'].$version, '3.0');
 
-      console.log(JSON.stringify(chameleon, null, 4));
       done();
     });
 
@@ -99,6 +98,190 @@ describe('Pizza to Flat', function () {
         },
         '$id': 'P3'
       });
+    });
+
+    it('should have the part content created', function () {
+      assert.equal(chameleon['score-partwise'].part.length, 3);
+      assert.equal(chameleon['score-partwise'].part[0].$id, 'P1');
+      assert.equal(chameleon['score-partwise'].part[1].$id, 'P2');
+      assert.equal(chameleon['score-partwise'].part[2].$id, 'P3');
+      assert.equal(chameleon['score-partwise'].part[0].measure.length, 1);
+      assert.equal(chameleon['score-partwise'].part[1].measure.length, 1);
+      assert.equal(chameleon['score-partwise'].part[2].measure.length, 1);
+    });
+
+    it('should have measure attributes set (4/4 & tempo)', function () {
+      assert.deepEqual(chameleon['score-partwise'].part[0].measure[0].attributes, [
+        {
+          'divisions': '4',
+          'time': {
+            'beats': 4,
+            'beat-type': 4
+          },
+          'clef': {
+            'sign': 'percussion',
+            'line': '2'
+          },
+          'key': {
+            'fifths': '0'
+          },
+          'staff-details': {
+            'staff-lines': '1'
+          },
+          'noteBefore': '-1'
+        }
+      ]);
+
+      assert.deepEqual(chameleon['score-partwise'].part[0].measure[0].sound, {
+        '$tempo': 94
+      });
+    });
+
+    it('measure content with notes & rests merged', function () {
+      // [1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0] (16)
+      var m = chameleon['score-partwise'].part[0].measure[0];
+
+      assert.deepEqual(m.note, [
+        {
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
+          },
+          'instrument': {
+            '$id': 'P1-X1'
+          },
+          'duration': 8,
+          'type': 'half'
+        },
+        {
+          'staff': '1',
+          'voice': '1',
+          'rest': {},
+          'duration': 2,
+          'type': 'eight'
+        },
+        {
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
+          },
+          'instrument': {
+            '$id': 'P1-X1'
+          },
+          'duration': 4,
+          'type': 'quarter'
+        },
+        {
+          'staff': '1',
+          'voice': '1',
+          'rest': {},
+          'duration': 2,
+          'type': 'eight'
+        }
+      ]);
+    });
+
+    it('should fill measure full of notes (w/o rests)', function () {
+      // [1,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0] (16)
+      var m = chameleon['score-partwise'].part[2].measure[0];
+
+      assert.deepEqual(m.note, [
+        {
+          "staff": "1",
+          "voice": "1",
+          "unpitched": {
+            "display-step": "E",
+            "display-octave": "4"
+          },
+          "instrument": {
+            "$id": "P3-X1"
+          },
+          "duration": 4,
+          "type": "quarter"
+        },
+        {
+          "staff": "1",
+          "voice": "1",
+          "unpitched": {
+            "display-step": "E",
+            "display-octave": "4"
+          },
+          "instrument": {
+            "$id": "P3-X1"
+          },
+          "duration": 2,
+          "type": "eight"
+        },
+        {
+          "staff": "1",
+          "voice": "1",
+          "unpitched": {
+            "display-step": "E",
+            "display-octave": "4"
+          },
+          "instrument": {
+            "$id": "P3-X1"
+          },
+          "duration": 2,
+          "type": "eight"
+        },
+        {
+          "staff": "1",
+          "voice": "1",
+          "unpitched": {
+            "display-step": "E",
+            "display-octave": "4"
+          },
+          "instrument": {
+            "$id": "P3-X1"
+          },
+          "duration": 2,
+          "type": "eight"
+        },
+        {
+          "staff": "1",
+          "voice": "1",
+          "unpitched": {
+            "display-step": "E",
+            "display-octave": "4"
+          },
+          "instrument": {
+            "$id": "P3-X1"
+          },
+          "duration": 2,
+          "type": "eight"
+        },
+        {
+          "staff": "1",
+          "voice": "1",
+          "unpitched": {
+            "display-step": "E",
+            "display-octave": "4"
+          },
+          "instrument": {
+            "$id": "P3-X1"
+          },
+          "duration": 2,
+          "type": "eight"
+        },
+        {
+          "staff": "1",
+          "voice": "1",
+          "unpitched": {
+            "display-step": "E",
+            "display-octave": "4"
+          },
+          "instrument": {
+            "$id": "P3-X1"
+          },
+          "duration": 2,
+          "type": "eight"
+        }
+      ]);
     });
   });
 });
