@@ -28,6 +28,12 @@ a, a:visited, a:hover a:active {
   color: #F44336;
 }
 
+@media(max-height: 800px) {
+  body {
+    display: block;
+  }
+}
+
 /* Embed container */
 #embed-container {
   margin: 30px;
@@ -57,8 +63,8 @@ iframe {
 
 .actions {
   display: flex;
+  margin: 15px 0 -15px;
   padding: 0 30px;
-  margin-bottom: -15px;
   text-align: right;
 }
 .actions button {
@@ -88,6 +94,18 @@ iframe {
   }
   .actions {
     padding: 0 16px;
+  }
+}
+
+@media(max-width: 360px) {
+  .mui-btn {
+    padding: 0 15px;
+  }
+}
+
+@media(max-width: 310px) {
+  .mui-btn img {
+    display: none;
   }
 }
 
