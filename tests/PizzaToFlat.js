@@ -7,15 +7,12 @@ var PizzaToFlat = require('../lib/PizzaToFlat');
 describe('Pizza to Flat', function () {
   describe('Chameleon', function () {
     var chameleon;
-    it('should convert to a Flat JSON file', function (done) {
+    it('should convert to a Flat JSON file', function () {
       var pizza = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'pizzas', 'chameleon.json')));
-
       chameleon = new PizzaToFlat(pizza).convert();
       assert.ok(typeof chameleon === 'object' && chameleon);
       assert.ok(chameleon['score-partwise'], 'Missing score-partwise');
       assert.equal(chameleon['score-partwise'].$version, '3.0');
-
-      done();
     });
 
     it('should use the Pizza title', function () {
@@ -191,95 +188,230 @@ describe('Pizza to Flat', function () {
 
       assert.deepEqual(m.note, [
         {
-          "staff": "1",
-          "voice": "1",
-          "unpitched": {
-            "display-step": "E",
-            "display-octave": "4"
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
           },
-          "instrument": {
-            "$id": "P3-X1"
+          'instrument': {
+            '$id': 'P3-X1'
           },
-          "duration": 4,
-          "type": "quarter"
+          'duration': 4,
+          'type': 'quarter'
         },
         {
-          "staff": "1",
-          "voice": "1",
-          "unpitched": {
-            "display-step": "E",
-            "display-octave": "4"
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
           },
-          "instrument": {
-            "$id": "P3-X1"
+          'instrument': {
+            '$id': 'P3-X1'
           },
-          "duration": 2,
-          "type": "eight"
+          'duration': 2,
+          'type': 'eight'
         },
         {
-          "staff": "1",
-          "voice": "1",
-          "unpitched": {
-            "display-step": "E",
-            "display-octave": "4"
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
           },
-          "instrument": {
-            "$id": "P3-X1"
+          'instrument': {
+            '$id': 'P3-X1'
           },
-          "duration": 2,
-          "type": "eight"
+          'duration': 2,
+          'type': 'eight'
         },
         {
-          "staff": "1",
-          "voice": "1",
-          "unpitched": {
-            "display-step": "E",
-            "display-octave": "4"
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
           },
-          "instrument": {
-            "$id": "P3-X1"
+          'instrument': {
+            '$id': 'P3-X1'
           },
-          "duration": 2,
-          "type": "eight"
+          'duration': 2,
+          'type': 'eight'
         },
         {
-          "staff": "1",
-          "voice": "1",
-          "unpitched": {
-            "display-step": "E",
-            "display-octave": "4"
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
           },
-          "instrument": {
-            "$id": "P3-X1"
+          'instrument': {
+            '$id': 'P3-X1'
           },
-          "duration": 2,
-          "type": "eight"
+          'duration': 2,
+          'type': 'eight'
         },
         {
-          "staff": "1",
-          "voice": "1",
-          "unpitched": {
-            "display-step": "E",
-            "display-octave": "4"
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
           },
-          "instrument": {
-            "$id": "P3-X1"
+          'instrument': {
+            '$id': 'P3-X1'
           },
-          "duration": 2,
-          "type": "eight"
+          'duration': 2,
+          'type': 'eight'
         },
         {
-          "staff": "1",
-          "voice": "1",
-          "unpitched": {
-            "display-step": "E",
-            "display-octave": "4"
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
           },
-          "instrument": {
-            "$id": "P3-X1"
+          'instrument': {
+            '$id': 'P3-X1'
           },
-          "duration": 2,
-          "type": "eight"
+          'duration': 2,
+          'type': 'eight'
+        }
+      ]);
+    });
+  });
+
+  describe('Bembe', function () {
+    var bembe;
+    it('should convert to a Flat JSON file', function () {
+      var pizza = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'pizzas', 'bembe.json')));
+      bembe = new PizzaToFlat(pizza).convert();
+      assert.ok(typeof bembe === 'object' && bembe);
+      assert.ok(bembe['score-partwise'], 'Missing score-partwise');
+      assert.equal(bembe['score-partwise'].$version, '3.0');
+    });
+
+    it('should have measure attributes set (12/8 & tempo)', function () {
+      assert.deepEqual(bembe['score-partwise'].part[0].measure[0].attributes, [
+        {
+          'divisions': '4',
+          'time': {
+            'beats': 12,
+            'beat-type': 8
+          },
+          'clef': {
+            'sign': 'percussion',
+            'line': '2'
+          },
+          'key': {
+            'fifths': '0'
+          },
+          'staff-details': {
+            'staff-lines': '1'
+          },
+          'noteBefore': '-1'
+        }
+      ]);
+
+      assert.deepEqual(bembe['score-partwise'].part[0].measure[0].sound, {
+        '$tempo': 90
+      });
+    });
+
+    it('should have fill the 12/8 measure (bell)', function () {
+      // [1,0,1,0,1,1,0,1,0,1,0,1] (12/bell)
+      assert.deepEqual(bembe['score-partwise'].part[2].measure[0].note, [
+        {
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
+          },
+          'instrument': {
+            '$id': 'P3-X1'
+          },
+          'duration': 2,
+          'type': 'eight'
+        },
+        {
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
+          },
+          'instrument': {
+            '$id': 'P3-X1'
+          },
+          'duration': 2,
+          'type': 'eight'
+        },
+        {
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
+          },
+          'instrument': {
+            '$id': 'P3-X1'
+          },
+          'duration': 1,
+          'type': '16th'
+        },
+        {
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
+          },
+          'instrument': {
+            '$id': 'P3-X1'
+          },
+          'duration': 2,
+          'type': 'eight'
+        },
+        {
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
+          },
+          'instrument': {
+            '$id': 'P3-X1'
+          },
+          'duration': 2,
+          'type': 'eight'
+        },
+        {
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
+          },
+          'instrument': {
+            '$id': 'P3-X1'
+          },
+          'duration': 2,
+          'type': 'eight'
+        },
+        {
+          'staff': '1',
+          'voice': '1',
+          'unpitched': {
+            'display-step': 'E',
+            'display-octave': '4'
+          },
+          'instrument': {
+            '$id': 'P3-X1'
+          },
+          'duration': 1,
+          'type': '16th'
         }
       ]);
     });

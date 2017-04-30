@@ -1,0 +1,64 @@
+{
+	"name": "Bembe",
+	"slug": "bembe",
+	"options": {
+		"tempo": 90,
+		"volume": 0.8,
+		"reverb": 0.32
+	},
+	"sections": [
+		{
+			"name": "pizza 1",
+			"repeat": 1,
+			"slices": 12,
+			"options": {
+				"kit": "afro-latin",
+				"swing": 0
+			},
+			"patterns": {
+				"conga": [
+					1,
+					0,
+					0,
+					1,
+					1,
+					0,
+					0,
+					1,
+					1,
+					0,
+					0,
+					1
+				],
+				"bongo": [
+					1,
+					0,
+					1,
+					0,
+					1,
+					0,
+					1,
+					0,
+					1,
+					0,
+					1,
+					0
+				],
+				"bell": [
+					1,
+					0,
+					1,
+					0,
+					1,
+					1,
+					0,
+					1,
+					0,
+					1,
+					0,
+					1
+				]
+			}
+		}
+	]
+}
