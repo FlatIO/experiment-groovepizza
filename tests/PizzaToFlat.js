@@ -18,5 +18,16 @@ describe('Pizza to Flat', function () {
       console.log(JSON.stringify(chameleon, null, 4));
       done();
     });
+
+    it('should use the Pizza title', function () {
+      assert.ok(chameleon['score-partwise'], 'No credits');
+      assert.equal(chameleon['score-partwise'].length, 1);
+      assert.equal(chameleon['score-partwise'][0]['credit-type'], 'title');
+      assert.equal(chameleon['score-partwise'][0]['credit-words'], 'Chameleon');
+    });
+
+    it('should have the 3 instruments par headers', function () {
+
+    });
   });
 });
