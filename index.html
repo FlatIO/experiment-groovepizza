@@ -12,6 +12,7 @@
     <div class="score-container" ng-if="musedid" ng-cloak>
       <div class="loading" ng-if="loading"><span>Loading...</span></div>
       <div id="embed-container"></div>
+      <div class="error" ng-if="error" ng-bind="error"></div>
     </div>
     <div class="intro-horizontal" ng-if="!musedid" ng-cloak>
       <div class="logo-gp">
@@ -64,12 +65,19 @@
             return $scope.embed;
           }
 
+          $scope.displayErrors = function (err) {
+            if (err.data) {
+              err = err.data;
+            }
+            $scope.error = err.description || err.message || err;
+          };
+
           $scope.loadPizza = function (id) {
             return $q(function (resolve, reject) {
               $scope.loading = true;
 
               // Load Pizza
-              $http.get('https://api.musedlab.org/bins/' + encodeURI(id))
+              $http.get('https://cors-anywhere.herokuapp.com/https://api.musedlab.org/bins/' + encodeURI(id))
               // Convert
                 .then(function (response) {
                   var pizza = response.data;
@@ -110,7 +118,7 @@
                 })
                 .catch(function (err) {
                   $scope.musedid = null;
-                  $scope.error = err;
+                  $scope.displayErrors(err);
                 });
             }
             else {
@@ -121,7 +129,7 @@
           // Load ?musedi=<x>
           $scope.musedid = $location.search().museid;
           if ($scope.musedid) {
-            $scope.loadPizza($scope.musedid);
+            $scope.loadPizza($scope.musedid).catch($scope.displayErrors);
           }
         }]);
     </script>

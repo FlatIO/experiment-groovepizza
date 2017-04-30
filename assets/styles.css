@@ -20,6 +20,13 @@ body {
 a, a:visited, a:hover a:active {
   color: #fff;
 }
+.error {
+  background: #fff;
+  padding: 15px;
+  margin: 30px 0;
+  border-radius: 2px;
+  color: #F44336;
+}
 
 /* Embed container */
 #embed-container {
