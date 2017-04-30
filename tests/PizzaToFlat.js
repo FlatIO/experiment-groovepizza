@@ -84,7 +84,7 @@ describe('Pizza to Flat', function () {
           '$id': 'P3-X1'
         },
         'midi-instrument': {
-          'midi-unpitched': '43',
+          'midi-unpitched': '45',
           'midi-program': '1',
           'volume': '100',
           'midi-channel': '10',
@@ -92,7 +92,7 @@ describe('Pizza to Flat', function () {
         },
         'pitchMapping': {
           'uE/4': {
-            'normal': '43',
+            'normal': '45',
             'default': 'normal'
           }
         },
