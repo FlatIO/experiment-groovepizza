@@ -55,6 +55,16 @@ iframe {
   min-height: 450px;
 }
 
+@media(max-width: 800px) {
+  .score-container {
+    min-width: auto;
+    width: 100vw;
+  }
+  #embed-container {
+    margin: 30px 16px;
+  }
+}
+
 /* Intro page */
 .intro-horizontal {
   display: flex;
@@ -86,11 +96,21 @@ iframe {
   margin: 0;
 }
 
+@media(max-width: 790px) {
+  .intro-horizontal {
+    flex-direction: column;
+  }
+  .pizza-input {
+    margin: 0 16px;
+  }
+}
+
 /* Footer */
 .footer {
   text-align: center;
   line-height: 24px;
   font-size: 16px;
+  margin: 15px 16px;
 }
 .footer a {
   text-decoration: underline;
