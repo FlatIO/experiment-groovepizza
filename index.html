@@ -6,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="//cdn.muicss.com/mui-0.9.16/css/mui.min.css" rel="stylesheet">
-    <link href="./assets/styles.css" rel="stylesheet">
+    <link href="assets/styles.css" rel="stylesheet">
   </head>
   <body ng-controller="FlatPizzaCtrl">
     <div class="score-container" ng-if="musedid" ng-cloak>
       <div class="loading" ng-if="loading"><span>Loading...</span></div>
+      <div class="actions" ng-if="!loading">
+        <button class="mui-btn mui-btn--primary print" ng-click="print()"><img src="assets/img/print.svg"> Print</button>
+        <button class="mui-btn mui-btn--primary upload" ng-click="upload()" ng-if="!uploading"><img src="assets/img/logo-f-white.svg"> Edit with Flat</button>
+        <button class="mui-btn mui-btn--primary upload" ng-if="uploading" disabled><img src="assets/img/logo-f-white.svg"> Uploading...</button>
+      </div>
       <div id="embed-container"></div>
       <div class="error" ng-if="error" ng-bind="error"></div>
     </div>
@@ -48,10 +53,11 @@
         }])
         .controller('FlatPizzaCtrl', ['$http', '$q', '$log', '$timeout', '$location', '$scope', function ($http, $q, $log, $timeout, $location, $scope) {
           // Instance Flat embed
+          $scope.flatAppId = '590606105cce794333bed42d';
           $scope.loadEmbed = function () {
             $scope.embed = new Flat.Embed('embed-container', {
               embedParams: {
-                appId: '590606105cce794333bed42d',
+                appId: $scope.flatAppId,
                 branding: false,
                 controlsFloating: false,
                 controlsPanel: false,
@@ -69,6 +75,28 @@
               err = err.data;
             }
             $scope.error = err.description || err.message || err;
+            if (!$scope.$$phase) {
+              $scope.$apply();
+            }
+          };
+
+          $scope.print = function () {
+            if ($scope.embed) {
+              $scope.embed.print();
+            }
+          };
+
+          $scope.upload = function () {
+            $scope.uploading = true;
+            $http.post('https://api.myjson.com/bins', JSON.stringify($scope.score))
+              .then(function (response) {
+                window.location = 'https://flat.io/score/import-url?title=My%20Groove%20Pizza&app=' + $scope.flatAppId +
+                  '&url=' + encodeURI(response.data.uri);
+              })
+              .catch(function (err) {
+                $scope.uploading = false;
+                $scope.displayErrors(err);
+              });
           };
 
           $scope.loadPizza = function (id) {

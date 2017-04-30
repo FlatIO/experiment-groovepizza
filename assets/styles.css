@@ -55,6 +55,29 @@ iframe {
   min-height: 450px;
 }
 
+.actions {
+  display: flex;
+  padding: 0 30px;
+  margin-bottom: -15px;
+  text-align: right;
+}
+.actions button {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  margin: 0;
+}
+.mui-btn+.mui-btn {
+  margin-left: 15px;
+}
+.print img {
+  margin-left: -10px;
+}
+.upload img {
+  height: 16px;
+  margin-right: 10px;
+}
+
 @media(max-width: 800px) {
   .score-container {
     min-width: auto;
@@ -62,6 +85,9 @@ iframe {
   }
   #embed-container {
     margin: 30px 16px;
+  }
+  .actions {
+    padding: 0 16px;
   }
 }
 
