@@ -1,0 +1,97 @@
+/* Main */
+html, body {
+  background-color: #3d2e7f;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+a, a:visited, a:hover a:active {
+  color: #fff;
+}
+
+/* Embed container */
+#embed-container {
+  margin: 30px;
+}
+.score-container {
+  min-width: 800px;
+  position: relative;
+}
+.score-container .loading {
+  position: absolute;
+  background: rgba(61, 46, 127, 0.8);
+  width: 100%;
+  height: 100%;
+}
+.score-container .loading span {
+  display: block;
+  font-size: 24px;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+iframe {
+  min-height: 450px;
+}
+
+/* Intro page */
+.intro-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.logo-gp {
+  flex: 0 0 200px;
+}
+.pizza-input {
+  flex: 0 0 auto;
+  background: #4d38a0;
+  border-radius: 2px;
+  padding: 30px;
+}
+.pizza-input .mui-btn {
+  color: #3d2e7f;
+  margin: 0;
+}
+.mui-textfield > input {
+  color: #fff;
+}
+.mui-textfield > input::placeholder {
+  color: #fff;
+}
+.help-input {
+  font-size: 18px;
+  margin: 0;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  line-height: 24px;
+  font-size: 16px;
+}
+.footer a {
+  text-decoration: underline;
+}
+.footer .logo-flat {
+  display: block;
+  margin-top: 15px;
+}
+.footer .logo-flat img {
+  height: 30px;
+}

@@ -1,0 +1,129 @@
+<!doctype html>
+<html ng-app="flatPizza">
+  <head>
+    <meta charset="utf-8">
+    <title>Generate a sheet music from your Groove Pizza - Flat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="//cdn.muicss.com/mui-0.9.16/css/mui.min.css" rel="stylesheet">
+    <link href="./assets/styles.css" rel="stylesheet">
+  </head>
+  <body ng-controller="FlatPizzaCtrl">
+    <div class="score-container" ng-if="musedid" ng-cloak>
+      <div class="loading" ng-if="loading"><span>Loading...</span></div>
+      <div id="embed-container"></div>
+    </div>
+    <div class="intro-horizontal" ng-if="!musedid" ng-cloak>
+      <div class="logo-gp">
+        <a href="https://apps.musedlab.org/groovepizza"><img src="assets/img/groove-pizza.svg" target="_blank"></a>
+      </div>
+      <form class="pizza-input" ng-if="!museid" ng-submit="loadPizzaUrl(url)">
+        <p class="help-input">Paste the URL of your <a href="https://apps.musedlab.org/groovepizza" target="_blank">Groove Pizza</a> to generate your sheet music:</p>
+        <div class="mui-textfield">
+          <input type="text" ng-model="url" placeholder="URL">
+        </div>
+        <div class="error" ng-if="error" ng-bind="error"></div>
+        <input type="submit" value="Generate" class="mui-btn mui-btn--raised">
+      </form>
+    </div>
+    <div class="footer" ng-cloak>
+      This sheet music generator is an <a href="https://github.com/FlatIO/experiment-groovepizza">Open-Source experiment</a>
+      by <a href="https://flat.io">Flat</a> built on the top of the <a href="https://apps.musedlab.org/groovepizza">Groove Pizza App</a>.<br>
+      <a href="mailto:hello@flat.io">Let us know if you have any feedback</a>!
+      <a class="logo-flat" href="https://flat.io"><img src="assets/img/flat.svg" alt="Flat"></a>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/g/flat-embed@0.2.0,raven@3.14.2,angularjs@1.6.0"></script>
+    <script>Raven.config('https://b9d41ab1a09646ebab60be5af2a68c5a@peoc.flat.io/35').install();</script>
+    <script src="lib/PizzaToFlat.js"></script>
+
+    <script>
+      angular.module('flatPizza', [])
+        .config(['$locationProvider', function ($locationProvider) {
+          $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+          });
+        }])
+        .controller('FlatPizzaCtrl', ['$http', '$q', '$log', '$timeout', '$location', '$scope', function ($http, $q, $log, $timeout, $location, $scope) {
+          // Instance Flat embed
+          $scope.loadEmbed = function () {
+            $scope.embed = new Flat.Embed('embed-container', {
+              embedParams: {
+                appId: '590606105cce794333bed42d',
+                branding: false,
+                controlsFloating: false,
+                controlsPanel: false,
+                controlsDisplay: false,
+                themeControlsBackground: '#4d38a0',
+                themeIconsPrimary: '#3d2e7f',
+                themeCursorV0: '#3d2e7f',
+                themeSlider: '#3d2e7f'
+              }
+            });
+            return $scope.embed;
+          }
+
+          $scope.loadPizza = function (id) {
+            return $q(function (resolve, reject) {
+              $scope.loading = true;
+
+              // Load Pizza
+              $http.get('https://api.musedlab.org/bins/' + encodeURI(id))
+              // Convert
+                .then(function (response) {
+                  var pizza = response.data;
+                  if (!pizza.groove) {
+                    return reject(new Error('Groove pizza not found'));
+                  }
+                  $scope.score = new PizzaToFlat(pizza.groove).convert();
+                  $log.debug('Score:', $scope.score);
+                  return $scope.loadEmbed();
+                })
+                // Display
+                .then(function (embed) {
+                  return embed.loadJSON($scope.score);
+                })
+                .then(function () {
+                  $scope.loading = false;
+                  resolve();
+                })
+                .catch(function (err) {
+                  $scope.loading = false;
+                  reject(err);
+                });
+            });
+          };
+
+          // Load Pizza by URL (form)
+          $scope.loadPizzaUrl = function (url) {
+            $scope.error = null;
+            if (url) {
+              $scope.musedid = new URL(url).searchParams.get('museid');
+              if (!$scope.musedid) {
+                $scope.error = 'Invalid Pizza URL';
+              }
+              $scope
+                .loadPizza($scope.musedid)
+                .then(function () {
+                  $location.search('museid', $scope.musedid);
+                })
+                .catch(function (err) {
+                  $scope.musedid = null;
+                  $scope.error = err;
+                });
+            }
+            else {
+              $scope.error = 'Invalid Pizza URL';
+            }
+          };
+
+          // Load ?musedi=<x>
+          $scope.musedid = $location.search().museid;
+          if ($scope.musedid) {
+            $scope.loadPizza($scope.musedid);
+          }
+        }]);
+    </script>
+  </body>
+</html>
