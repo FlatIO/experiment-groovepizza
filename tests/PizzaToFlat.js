@@ -129,6 +129,16 @@ describe('Pizza to Flat', function () {
         }
       ]);
 
+      assert.deepEqual(chameleon['score-partwise'].part[0].measure[0].barline, {
+        $location: 'right',
+        'bar-style': 'light-heavy',
+        repeat: {
+          $direction: 'backward',
+          $times: 1,
+          $winged: 'none'
+        }
+      });
+
       assert.deepEqual(chameleon['score-partwise'].part[0].measure[0].sound, {
         '$tempo': 94
       });
