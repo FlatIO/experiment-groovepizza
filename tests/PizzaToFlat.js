@@ -167,7 +167,7 @@ describe('Pizza to Flat', function () {
           'voice': '1',
           'rest': {},
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         },
         {
           'staff': '1',
@@ -187,7 +187,7 @@ describe('Pizza to Flat', function () {
           'voice': '1',
           'rest': {},
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         }
       ]);
     });
@@ -221,7 +221,7 @@ describe('Pizza to Flat', function () {
             '$id': 'P3-X1'
           },
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         },
         {
           'staff': '1',
@@ -234,7 +234,7 @@ describe('Pizza to Flat', function () {
             '$id': 'P3-X1'
           },
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         },
         {
           'staff': '1',
@@ -247,7 +247,7 @@ describe('Pizza to Flat', function () {
             '$id': 'P3-X1'
           },
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         },
         {
           'staff': '1',
@@ -260,7 +260,7 @@ describe('Pizza to Flat', function () {
             '$id': 'P3-X1'
           },
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         },
         {
           'staff': '1',
@@ -273,7 +273,7 @@ describe('Pizza to Flat', function () {
             '$id': 'P3-X1'
           },
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         },
         {
           'staff': '1',
@@ -286,7 +286,7 @@ describe('Pizza to Flat', function () {
             '$id': 'P3-X1'
           },
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         }
       ]);
     });
@@ -343,7 +343,7 @@ describe('Pizza to Flat', function () {
             '$id': 'P3-X1'
           },
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         },
         {
           'staff': '1',
@@ -356,7 +356,7 @@ describe('Pizza to Flat', function () {
             '$id': 'P3-X1'
           },
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         },
         {
           'staff': '1',
@@ -382,7 +382,7 @@ describe('Pizza to Flat', function () {
             '$id': 'P3-X1'
           },
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         },
         {
           'staff': '1',
@@ -395,7 +395,7 @@ describe('Pizza to Flat', function () {
             '$id': 'P3-X1'
           },
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         },
         {
           'staff': '1',
@@ -408,7 +408,7 @@ describe('Pizza to Flat', function () {
             '$id': 'P3-X1'
           },
           'duration': 2,
-          'type': 'eight'
+          'type': 'eighth'
         },
         {
           'staff': '1',
