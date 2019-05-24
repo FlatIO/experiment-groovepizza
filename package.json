@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "npm run eslint && npm run test:mocha",
-    "test:mocha": "./node_modules/.bin/mocha --ui exports --reporter spec --slow 150ms --timeout 30000ms tests/*",
+    "test:mocha": "./node_modules/.bin/mocha --exit --reporter spec --slow 150ms --timeout 30000ms tests/*",
     "eslint": "./node_modules/.bin/eslint lib/*"
   },
   "repository": {
