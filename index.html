@@ -88,7 +88,7 @@
 
           $scope.upload = function () {
             $scope.uploading = true;
-            $http.post('https://api.myjson.com/bins', JSON.stringify($scope.score))
+            $http.post('https://extendsclass.com/api/json-storage/bin', JSON.stringify($scope.score))
               .then(function (response) {
                 window.location = 'https://flat.io/score/import-url?title=My%20Groove%20Pizza&app=' + $scope.flatAppId +
                   '&url=' + encodeURI(response.data.uri);
