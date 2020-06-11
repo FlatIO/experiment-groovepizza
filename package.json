@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/FlatIO/experiment-groovepizza#readme",
   "devDependencies": {
-    "mocha": "^7.0.1",
+    "mocha": "^8.0.1",
     "eslint": "^5.16.0"
   }
 }
