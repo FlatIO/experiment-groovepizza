@@ -7,7 +7,7 @@ built on the top of the [Groove Pizza App](https://apps.musedlab.org/groovepizza
 
 ## Try it
 
-Create [a Groove Pizza](https://apps.musedlab.org/groovepizza), then simply [paste its link into our generator](https://flatio.github.io/experiment-groovepizza).
+Create [a Groove Pizza](https://apps.musedlab.org/groovepizza), then simply [paste its link into our generator](https://groovepizza.flat.io/).
 
 ## License
 
