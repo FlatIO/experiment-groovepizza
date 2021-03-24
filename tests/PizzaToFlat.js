@@ -140,7 +140,11 @@ describe('Pizza to Flat', function () {
       });
 
       assert.deepEqual(chameleon['score-partwise'].part[0].measure[0].sound, {
-        '$tempo': 94
+        '$tempo': 94,
+        '$adagio-swing': {
+          "ratio": 30,
+          "swing": true
+        }
       });
     });
 
@@ -325,7 +329,11 @@ describe('Pizza to Flat', function () {
       ]);
 
       assert.deepEqual(bembe['score-partwise'].part[0].measure[0].sound, {
-        '$tempo': 90
+        '$tempo': 90,
+        '$adagio-swing': {
+          "ratio": 0,
+          "swing": false
+        }
       });
     });
 
@@ -692,6 +700,37 @@ describe('Pizza to Flat', function () {
           }
         ]);
       }
+    });
+
+    it('should have set the swing on & off', function () {
+      assert.deepEqual(converted['score-partwise'].part[0].measure[0].sound, {
+        '$tempo': 90,
+        '$adagio-swing': {
+          "ratio": 50,
+          "swing": true
+        }
+      });
+      assert.deepEqual(converted['score-partwise'].part[0].measure[1].sound, {
+        '$tempo': 90,
+        '$adagio-swing': {
+          "ratio": 0,
+          "swing": false
+        }
+      });
+      assert.deepEqual(converted['score-partwise'].part[0].measure[2].sound, {
+        '$tempo': 90,
+        '$adagio-swing': {
+          "ratio": 0,
+          "swing": false
+        }
+      });
+      assert.deepEqual(converted['score-partwise'].part[0].measure[3].sound, {
+        '$tempo': 90,
+        '$adagio-swing': {
+          "ratio": 50,
+          "swing": true
+        }
+      });
     });
   });
 });

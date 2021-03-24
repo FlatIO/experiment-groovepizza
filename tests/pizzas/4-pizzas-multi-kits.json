@@ -13,7 +13,7 @@
       "slices": 12,
       "options": {
         "kit": "rock",
-        "swing": 0
+        "swing": 0.5
       },
       "patterns": {
         "kick": [
