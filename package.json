@@ -24,6 +24,6 @@
   "homepage": "https://github.com/FlatIO/experiment-groovepizza#readme",
   "devDependencies": {
     "mocha": "^9.0.0",
-    "eslint": "^5.16.0"
+    "eslint": "^7.31.0"
   }
 }
