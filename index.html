@@ -104,7 +104,7 @@
               $scope.loading = true;
 
               // Load Pizza
-              $http.get('https://flat-demos-cors-proxy.herokuapp.com/https://api.musedlab.org/bins/' + encodeURI(id))
+              $http.get('https://api.flat.io/groovepizza/' + encodeURI(id))
               // Convert
                 .then(function (response) {
                   var pizza = response.data;
